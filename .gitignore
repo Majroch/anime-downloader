@@ -1,0 +1,6 @@
+**/__pycache__
+video
+**/*.log
+**/*.tmp
+list.txt
+**/.vscode
