@@ -1,2 +1,0 @@
-chromedriver-autoinstaller
-geckodriver-autoinstaller

@@ -1,3 +1,6 @@
 [submodule "webdriver_majroch"]
 	path = libs/webdriver_majroch
 	url = https://github.com/Majroch/webdriver_majroch.git
+[submodule "libs/webdriver_majroch"]
+	path = libs/webdriver_majroch
+	url = https://github.com/Majroch/webdriver_majroch.git
