@@ -62,36 +62,10 @@ class Downloader(d._Downloader):
                 if not highest == u:
                     self.driver.get(highest[1])
 
-            video = self.driver.find_elements_by_class_name("pb-play-ico")
-
-            if type(video) == type([]):
-                for vid in video:
-                    vid.click()
-            else:
-                video.click()
-
-            time.sleep(3)
-
-            video = self.driver.find_elements_by_class_name("pb-vid-click")
-
-            if type(video) == type([]):
-                for vid in video:
-                    try:
-                        vid.click()
-                    except selenium.common.exceptions.ElementClickInterceptedException:
-                        t = int(str(self.driver.find_elements_by_class_name("pb-max-time")[0].text).split(":")[1])
-                        print("AD Found! Waiting: " + str(t+3) + "s")
-                        time.sleep(t + 3)
-                        vid.click()
-            else:
-                video.click()
-
-            video = self.driver.find_elements_by_class_name("pb-video-player")
-
-            for vid in video:
-                link = vid.get_attribute("src")
-                print("Found video: " + link)
-                output.append((link, str(self.driver.title) + ".mp4"))
+            video = self.driver.find_element_by_tag_name("video")
+            link = video.get_attribute("src")
+            print("Found video: " + link)
+            output.append((link, str(self.driver.title) + ".mp4"))
         
         return output
     

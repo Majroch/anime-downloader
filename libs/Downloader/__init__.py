@@ -17,8 +17,15 @@ class Browser: # pylint: disable=function-redefined
         for key in mods:
             modules[key] = importlib.import_module("libs.Downloader." + key)
 
+        last_driver = None
         for l in links:
             module = url.identifyUrl(l) # pylint: disable=undefined-variable
-            downloader = eval(module + ".Downloader()")
+            if not last_driver == module:
+                try:
+                    downloader.driver.close()
+                except:
+                    pass
+                downloader = eval(module + ".Downloader()")
+
             downloader.download([l], destination)
-            downloader.driver.close()
+            last_driver = module
