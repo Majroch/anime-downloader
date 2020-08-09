@@ -1,8 +1,8 @@
 from urllib.parse import urlparse
 
 links = (
-    ("cda.pl", "cda"),
-    ("4anime.one", "foranimedotone"),
+    ("cda.pl", "Cda"),
+    ("4anime.one", "ForAnimeDotOne"),
 )
 
 # https://www.cda.pl/video/1453770d9

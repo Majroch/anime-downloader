@@ -1,6 +1,7 @@
-from . import *
+# from . import *
 from .url import identifyUrl
 import importlib
+import os
 
 class Browser: # pylint: disable=function-redefined
     def __init__(self, links: list, destination: str="./video/"):
@@ -14,8 +15,9 @@ class Browser: # pylint: disable=function-redefined
             if not module in mods:
                 mods[module] = 1
         
+        current_pkg = os.path.dirname(os.path.abspath(__file__)).replace(os.getcwd(), "")[1:].replace("/", ".")
         for key in mods:
-            modules[key] = importlib.import_module("libs.Downloader." + key)
+            modules[key] = importlib.import_module("." + key, current_pkg)
 
         last_driver = None
         for l in links:

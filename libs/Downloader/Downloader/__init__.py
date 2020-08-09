@@ -1,4 +1,4 @@
-from libs.webdriver_majroch import webdriver_majroch
+from ...webdriver_majroch import webdriver_majroch
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
