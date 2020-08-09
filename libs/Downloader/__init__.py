@@ -1,5 +1,5 @@
-import libs.Downloader.url as url
 from . import *
+from .url import identifyUrl
 import importlib
 
 class Browser: # pylint: disable=function-redefined
@@ -10,7 +10,7 @@ class Browser: # pylint: disable=function-redefined
         mods = {}
         modules = {}
         for l in self.links:
-            module = url.identifyUrl(l) # pylint: disable=undefined-variable
+            module = identifyUrl(l) # pylint: disable=undefined-variable
             if not module in mods:
                 mods[module] = 1
         
@@ -19,7 +19,7 @@ class Browser: # pylint: disable=function-redefined
 
         last_driver = None
         for l in links:
-            module = url.identifyUrl(l) # pylint: disable=undefined-variable
+            module = identifyUrl(l) # pylint: disable=undefined-variable
             if not last_driver == module:
                 try:
                     downloader.driver.close()

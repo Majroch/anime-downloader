@@ -1,2 +1,2 @@
-from libs.Downloader import *
-from libs.webdriver_majroch import webdriver_majroch
+from .Downloader import *
+from .webdriver_majroch import webdriver_majroch
