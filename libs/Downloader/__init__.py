@@ -17,17 +17,24 @@ class Browser: # pylint: disable=function-redefined
         
         current_pkg = os.path.dirname(os.path.abspath(__file__)).replace(os.getcwd(), "")[1:].replace("/", ".")
         for key in mods:
-            modules[key] = importlib.import_module("." + key, current_pkg)
+            try:
+                modules[key] = importlib.import_module("." + key, current_pkg)
+            except ImportError:
+                print("No Module named: " + key + ". Ommiting...")
 
         last_driver = None
         for l in links:
             module = identifyUrl(l) # pylint: disable=undefined-variable
-            if not last_driver == module:
+            if module in modules.keys():
                 try:
-                    downloader.driver.close()
-                except:
-                    pass
-                downloader = eval(module + ".Downloader()")
+                    if not last_driver == module:
+                        try:
+                            downloader.driver.close()
+                        except:
+                            pass
+                            downloader = eval(module + ".Downloader()")
 
-            downloader.download([l], destination)
-            last_driver = module
+                    downloader.download([l], destination)
+                    last_driver = module
+                except SyntaxError:
+                    print("Cannot load module: " + module)
