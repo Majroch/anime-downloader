@@ -38,3 +38,5 @@ class Browser: # pylint: disable=function-redefined
                     last_driver = module
                 except SyntaxError:
                     print("Cannot load module: " + module)
+        if downloader:
+            downloader.driver.close()
