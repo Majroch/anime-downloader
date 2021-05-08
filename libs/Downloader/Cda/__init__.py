@@ -77,5 +77,5 @@ class Downloader(_Downloader):
         for link in getl:
             print("Downloading: " + link[1])
             filename = wget.download(link[0])
-            os.rename(filename, destination + link[1])
+            os.rename(filename, destination + link[1].replace(":", ""))
             print("")
