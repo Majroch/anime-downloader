@@ -13,7 +13,19 @@ class Downloader(_Downloader):
         for u in links:
             self.driver.get(u)
 
+            # Check if this is folder
+            print("Check for folder")
+            if self.is_element_exist((By.CLASS_NAME, "user-navi-folders")):
+                print("Folder found!")
+                newLinks = self.driver.find_elements_by_class_name("thumbnail-link")
+                videoLinks = []
+                for newL in newLinks:
+                    videoLinks.append(newL.get_attribute("href"))
+
+                return self.get_links(videoLinks)
+
             # Check for Form id=upload_form    
+            print("Check for form")
             if self.is_element_exist((By.ID, "upload_form")):
                 print("Found form to be filled!")
                 dzien = self.driver.find_element_by_id("dzien")
@@ -42,6 +54,7 @@ class Downloader(_Downloader):
 
 
             # Define Max resolution
+            print("Check for new resolution")
             if self.is_element_exist((By.CLASS_NAME, "quality-btn")):
                 quality = self.driver.find_elements_by_class_name("quality-btn")
                 highest = None
