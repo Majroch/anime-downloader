@@ -4,3 +4,4 @@ video
 **/*.tmp
 list.txt
 **/.vscode
+.idea

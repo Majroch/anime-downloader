@@ -1,5 +1,7 @@
-selenium
+selenium==3.9.0
 geckodriver-autoinstaller
 chromedriver-autoinstaller
 wget
 certifi
+bs4
+requests
